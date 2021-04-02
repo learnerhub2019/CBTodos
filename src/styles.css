@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* background: #599fd9;
+  background-image: linear-gradient( 135.9deg, rgba( 109,25,251,1) 16.4%, rgba( 125,31,168,1) 56.1% ) */
+}
+
+.vertical-nav {
+  min-width: 17rem;
+  width: 17rem;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+#content {
+  width: 100%;
+  margin: 0;
+}
+
+#sidebar {
+  margin-left: -17rem;
+}
+
+#sidebar.active {
+  margin-left: 0;
+  transition: all 0.4s;
+}
+
+#content.active {
+  width: calc(100% - 17rem);
+  margin-left: 17rem;
+  transition: all 0.4s;
+}
+
+.separator {
+  margin: 3rem 0;
+  border-bottom: 1px dashed #fff;
+}
+
+.page-container {
+  padding: 1rem;
+}
+
+.todo-breadcrum .breadcrum {
+  background-color: red;
+}
+
+.td-page-header {
+  font-family: "Barlow", sans-serif;
+}
+
+@media (max-widht: 768px) {
+  #sidebar {
+    margin-left: 0;
+  }
+  #sidebar.active {
+    margin-left: -17rem;
+  }
+
+  #content {
+    margin-left: 17rem;
+    width: calc(100% - 17rem);
+  }
+
+  #content.active {
+    width: 100%;
+  }
+}
