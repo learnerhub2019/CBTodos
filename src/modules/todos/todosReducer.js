@@ -1,8 +1,27 @@
-import { ADD_TODO, ADD_TODOS, DELETE_TODO, GET_TODOS } from "./todosActions";
+import {
+  ADD_TODO,
+  ADD_TODOS,
+  DELETE_TODO,
+  FETCH_TODOS,
+  GET_TODOS
+} from "./todosActions";
 
 const initialState = {
   items: []
 };
+
+// {
+//   userId: 1,
+//   id: 1,
+//   title: "delectus aut autem",
+//   completed: false
+// },
+// {
+//   userId: 1,
+//   id: 2,
+//   title: "delectus aut autem 2",
+//   completed: true
+// }
 
 const todoReducer = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -12,15 +31,18 @@ const todoReducer = (state = initialState, { type, payload }) => {
         items: [...state.items, payload]
       };
     case DELETE_TODO:
+      const filterTodos = state.items.filter((item) => {
+        return item.id !== payload;
+      });
       return {
         ...state,
-        items: state.items.filter((item) => item.id !== payload)
+        items: filterTodos
       };
     case ADD_TODOS:
       return {
-        ...state,
-        items: [...state.items, ...payload]
+        items: [...payload]
       };
+    case FETCH_TODOS:
     case GET_TODOS:
     default:
       return state;

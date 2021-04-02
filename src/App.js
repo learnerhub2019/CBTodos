@@ -4,21 +4,29 @@ import { HeaderComponent, SideMenu, RouterComponent } from "./components";
 import "./styles.css";
 // import _ from 'lodash';
 import { Container } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { addTodos } from "./modules/todos/todosActions";
+import { useSelector } from "react-redux";
+// import { addTodos, fetchTodos } from "./modules/todos/todosActions";
 
 export default function App() {
+  // const { todos } = useSelector((state) => state.todos.items);
   const { isSideBarOpen } = useSelector((state) => state.utils);
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch();
+
   console.log("app is " + isSideBarOpen);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos")
-      .then((response) => response.json())
-      .then(( todos ) => { console.log(todos)
-        dispatch( addTodos( todos ) );
-      });
-  });
+    // dispatch(fetchTodos());
+          // if( !state ) {
+      //   fetch("https://jsonplaceholder.typicode.com/todos")
+      //   .then((response) => response.json())
+      //   .then((todos) => {
+      //     // dispatch( addTodos(todos) );
+      //     return {
+      //       items: [...payload]
+      //     };
+      //   });
+      // }
+  }, []);
 
   return (
     <div className="App">

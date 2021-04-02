@@ -1,27 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import createSagaMiddleware from "redux-saga";
-import { applyMiddleware, createStore } from "redux";
-
-import "bootstrap/dist/css/bootstrap.min.css";
-import App from "./App";
-import rootReducer from "./rootReducer";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+
+// local imports
+import App from "./App";
+import { store, persistor } from "./store";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const rootElement = document.getElementById("root");
 
-// function* exampleSaga() {
-//   yeild(2 + 3);
-//   console.log("Example saga reached");
-// }
-
-export const sagaMiddleWare = createSagaMiddleware();
-const store = createStore(rootReducer);
-// sagaMiddleWare.run(exampleSaga);
-
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <PersistGate persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>,
   rootElement
 );

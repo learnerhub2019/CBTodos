@@ -3,17 +3,23 @@ import { Row, Col, ListGroup, Modal, Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import "./home.css";
 
-import { addTodo } from "../modules/todos/todosActions";
+import { addTodo, delteTodo } from "../modules/todos/todosActions";
 
 export default () => {
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos.items);
   console.log(todos);
 
-  const handleEditDetails = () => {};
+  // const handleEditDetails = () => {};
+
   const addNewTodo = () => {
     dispatch(addTodo({ id: 1, title: "todo1" }));
-    console.log( 'todo added' );
+    console.log("todo added");
+  };
+
+  const deleteTodo = (todoId) => {
+    console.log(todoId);
+    dispatch(delteTodo( parseInt(todoId) ) );
   };
 
   return (
@@ -81,7 +87,8 @@ export default () => {
                   key={todo.id}
                   value={todo.id}
                   className="d-flex justify-content-between align-items-center"
-                  onClick={(e) => handleEditDetails(e.target.value)}
+                  onClick={(e) => deleteTodo(e.target.value)}
+                  variant={todo.completed ? "success" : ""}
                 >
                   {todo.title}
                   <span className="badge badge-primary badge-pill">
