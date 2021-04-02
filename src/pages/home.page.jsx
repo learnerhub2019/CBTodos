@@ -1,19 +1,20 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Row, Col, ListGroup, Modal, Button, Form } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import "./home.css";
 
-export default () => {
-  const [show, setShow] = React.useState(false);
-  const [data, setData] = React.useState(0);
+import { addTodo } from "../modules/todos/todosActions";
 
-  const transactions = [];
-  // const handleEditDetails = (id) => {
-  //   let transactionId = id - 1;
-  //   setShow(true);
-  //   setData({
-  //     ...transactions[transactionId]
-  //   });
-  // };
+export default () => {
+  const dispatch = useDispatch();
+  const todos = useSelector((state) => state.todos.items);
+  console.log(todos);
+
+  const handleEditDetails = () => {};
+  const addNewTodo = () => {
+    dispatch(addTodo({ id: 1, title: "todo1" }));
+    console.log( 'todo added' );
+  };
 
   return (
     <>
@@ -22,8 +23,13 @@ export default () => {
           <h4 className="td-page-header text-danger">Dashboard</h4>
         </Col>
         <Col xs={6}>
-          <Button variant="primary" className="float-right" size="sm">
-            Add transaction
+          <Button
+            variant="primary"
+            className="float-right"
+            size="sm"
+            onClick={addNewTodo}
+          >
+            Add Todo
           </Button>
         </Col>
       </Row>
@@ -68,18 +74,18 @@ export default () => {
           </div> */}
 
           <ListGroup className="overflow-auto h-100">
-            {transactions.length ? (
-              transactions.map((transaction) => (
+            {todos.length ? (
+              todos.map((todo) => (
                 <ListGroup.Item
                   action
-                  key={transaction.id}
-                  value={transaction.id}
+                  key={todo.id}
+                  value={todo.id}
                   className="d-flex justify-content-between align-items-center"
                   onClick={(e) => handleEditDetails(e.target.value)}
                 >
-                  {transaction.text}
+                  {todo.title}
                   <span className="badge badge-primary badge-pill">
-                    {transaction.amount}
+                    {todo.amount}
                   </span>
                 </ListGroup.Item>
               ))
@@ -92,10 +98,10 @@ export default () => {
         </Col>
       </Row>
       <CustomModel
-        data={data}
-        show={show}
-        title="Edit Transaction"
-        onHide={() => setShow(false)}
+        // data={data}
+        // show={show}
+        title="Edit todo"
+        // onHide={() => setShow(false)}
       />
     </>
   );
@@ -117,10 +123,8 @@ const CustomModel = ({ show, onHide, title, data }) => {
       </Modal.Header>
       <Modal.Body>
         <h4>Centered Modal</h4>
-        <p>
-          {data.text}
-          {data.amount}
-        </p>
+        <p>{/* {data.text}
+          {data.amount} */}</p>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={onHide}>Close</Button>
