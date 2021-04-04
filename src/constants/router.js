@@ -1,4 +1,4 @@
-import { HomePage, AddTodosPage, SideMenuPages } from "../pages";
+import { HomePage, AddTodosPage, SideMenuPages, AuthPage } from "../pages";
 
 export default [
   {
@@ -6,12 +6,14 @@ export default [
     routeId: 1,
     isExact: true,
     componentName: HomePage,
+    isAuthRequired: true,
     componentParams: []
   },
   {
     path: "/add",
     routeId: 2,
-    isExact: true,
+    isExact: false,
+    isAuthRequired: true,
     componentName: AddTodosPage
     // componentParams: { todos, handleAddTodos }
   },
@@ -19,13 +21,15 @@ export default [
     path: "/today",
     routeId: 3,
     isExact: false,
+    isAuthRequired: true,
     componentName: SideMenuPages.TodayPage,
     componentParams: []
   },
   {
     path: "/due",
     routeId: 4,
-    isExact: false,
+    isExact: true,
+    isAuthRequired: true,
     componentName: SideMenuPages.DuePage,
     componentParams: []
   },
@@ -33,8 +37,15 @@ export default [
     path: "/upcoming",
     routeId: 5,
     isExact: false,
+    isAuthRequired: true,
     componentName: SideMenuPages.UpcomingPage,
     componentParams: []
+  },
+  {
+    path: "/signin",
+    routeId: 6,
+    isExact: false,
+    isAuthRequired: false,
+    componentName: AuthPage
   }
 ];
-

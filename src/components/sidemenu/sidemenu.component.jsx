@@ -2,10 +2,11 @@ import React from "react";
 import "./sidemenu.css";
 import UserProfile from "../../resources/userprofile.jpg";
 import { Nav } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default ({ SideMenuPages, isActive }) => {
-  const { isSideBarOpen } = useSelector((state) =>  state.utils);
+  const { isSideBarOpen } = useSelector((state) => state.utils);
 
   return (
     <div
@@ -32,47 +33,47 @@ export default ({ SideMenuPages, isActive }) => {
       </p>
       <Nav defaultActiveKey="/home" className="nav flex-column bg-white mb-0">
         <Nav.Item>
-          <Nav.Link href="/home" className="nav-link text-dark">
+          <Nav.Link as={NavLink} exact to="/" className="nav-link text-dark">
             <i className="fa fa-address-card mr-3 text-primary fa-fw"></i>
             Active
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href="/home" className="nav-link text-dark">
+          <Nav.Link as={NavLink} exact to="/due" className="nav-link text-dark">
             <i className="fa fa-address-card mr-3 text-primary fa-fw"></i>
             Home
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href="/home" className="nav-link text-dark">
+          <Nav.Link as={NavLink} exact to="/" className="nav-link text-dark">
             <i className="fa fa-address-card mr-3 text-primary fa-fw"></i>
             Member
           </Nav.Link>
         </Nav.Item>
       </Nav>
-      <p className="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">
+      {/* <p className="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">
         User Profile
       </p>
       <Nav defaultActiveKey="/home" className="nav flex-column bg-white mb-0">
         <Nav.Item>
-          <Nav.Link href="/home" className="nav-link text-dark">
+          <Nav.Link as={NavLink} href="/home" className="nav-link text-dark">
             <i className="fa fa-address-card mr-3 text-primary fa-fw"></i>
             Active
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href="/home" className="nav-link text-dark">
+          <Nav.Link as={NavLink} href="/home" className="nav-link text-dark">
             <i className="fa fa-address-card mr-3 text-primary fa-fw"></i>
             Home
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href="/home" className="nav-link text-dark">
+          <Nav.Link as={NavLink} href="/home" className="nav-link text-dark">
             <i className="fa fa-address-card mr-3 text-primary fa-fw"></i>
             Member
           </Nav.Link>
         </Nav.Item>
-      </Nav>
+      </Nav> */}
     </div>
   );
 };
