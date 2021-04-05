@@ -1,24 +1,26 @@
-import React from "react";
-import { Redirect, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, useHistory } from "react-router-dom";
 import USER_ROUTES from "../../../constants/router";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default () => {
-  // const history = useHistory();
+  const history = useHistory();
   let location = useLocation();
-  const currentUser = useSelector((state) => state.auth);
+  const { currentUser } = useSelector((state) => state.auth);
 
-  console.log("pathname " + location.pathname);
-  // console.log(location.pathname === "/signin");
-  // useEffect(() => {
-  //   if (currentUser && location.pathname === "/signin") {
-  //     console.log(" we reached here");
-  //     history.push("/");
-  //   }
-  // }, [currentUser, location]);
-
-  console.dir(currentUser);
+  useEffect(() => {
+    console.log("pathname " + location.pathname);
+    console.log("curentuser" + currentUser);
+    console.log(location.pathname === "/signin");
+    if (currentUser && location.pathname === "/signin") {
+      console.log(" we reached here");
+      history.push("/");
+    }
+    if (!currentUser) {
+      history.push("/signin");
+    }
+  }, [currentUser]);
 
   return USER_ROUTES.map((routeInfo) => (
     <Route
@@ -26,11 +28,7 @@ export default () => {
       path={routeInfo.path}
       exact={routeInfo.isExact}
     >
-      {currentUser && location.pathname !== "/signin" ? (
-        <routeInfo.componentName {...routeInfo.componentParams} />
-      ) : (
-        <Redirect to="/signin" />
-      )}
+      <routeInfo.componentName {...routeInfo.componentParams} />
     </Route>
   ));
 };

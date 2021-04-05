@@ -1,15 +1,15 @@
-import React from "react";
 import { SIGN_IN, SIGN_OUT } from "./authActions";
 
 const initialState = {
-  currentUser: true,
+  currentUser: false,
   token: undefined
 };
 
 const validateSignIn = (objUser) => {
-  const user = undefined;
-  const token = undefined;
-  return { user, token };
+  // const user = objUser.use;
+  // const token = objUser.token;
+
+  return { ...objUser };
 };
 
 const authReducer = (state = initialState, { type, payload }) => {

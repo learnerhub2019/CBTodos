@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 export default ({ SideMenuPages, isActive }) => {
   const { isSideBarOpen } = useSelector((state) => state.utils);
-
+  console.log("is sidebar open " + isSideBarOpen);
   return (
     <div
       id="sidebar"

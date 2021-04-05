@@ -12,7 +12,7 @@ const persistConfig = {
   whitelist: ["utils"]
 };
 
-console.dir ( authReducer );
+console.dir(authReducer);
 const rootReducer = combineReducers({
   utils: utilsReducer,
   todos: todosReducer,
