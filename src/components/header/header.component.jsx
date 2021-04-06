@@ -4,7 +4,8 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleSidebar } from "../../modules/utils/utilsActions";
+import { toggleSidebar, closeSideBar } from "../../modules/utils/utilsActions";
+import { signOut } from "../../modules/auth/authActions";
 
 export default () => {
   const faBarIcon = <FontAwesomeIcon icon={faBars} />;
@@ -12,6 +13,12 @@ export default () => {
   const { isSideBarOpen } = useSelector((state) => state.utils);
   const { currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
+  const handleSignOut = () => {
+    dispatch(signOut());
+    dispatch( closeSideBar() );
+  };
+
   return (
     <>
       {currentUser && (
@@ -30,28 +37,17 @@ export default () => {
             {isSideBarOpen ? faChevronLeftIcon : faBarIcon} TodoHandler
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="mr-auto">
+          <Navbar.Collapse
+            id="responsive-navbar-nav"
+            className="justify-content-end"
+          >
+            <Nav>
               <Nav.Link as={NavLink} exact to="/" activeClassName="active">
                 Home
               </Nav.Link>
-              <Nav.Link as={NavLink} exact to="/add" activeClassName="active">
-                Add
-              </Nav.Link>
-              <Nav.Link as={NavLink} exact to="/today" activeClassName="active">
-                Today
-              </Nav.Link>
-              <Nav.Link as={NavLink} exact to="/dew" activeClassName="active">
-                Dew
-              </Nav.Link>
-              <Nav.Link
-                as={NavLink}
-                exact
-                to="/upcoming"
-                activeClassName="active"
-              >
-                Upcoming
-              </Nav.Link>
+              {currentUser && (
+                <Nav.Link onClick={handleSignOut}>Logout</Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Navbar>

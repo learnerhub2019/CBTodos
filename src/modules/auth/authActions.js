@@ -10,3 +10,9 @@ export const signIn = (userData) => {
     payload: userData
   };
 };
+
+export const signOut = () => {
+  return {
+    type: SIGN_OUT
+  };
+};

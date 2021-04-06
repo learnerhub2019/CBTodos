@@ -18,7 +18,7 @@ const authReducer = (state = initialState, { type, payload }) => {
       const { user, token } = validateSignIn(payload);
       return { ...state, currentUser: user, token: token };
     case SIGN_OUT:
-      return { ...state, currentUser: undefined };
+      return { ...state, currentUser: undefined, token: undefined };
     default:
       return state;
   }

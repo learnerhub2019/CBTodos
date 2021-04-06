@@ -4,14 +4,19 @@ import UserProfile from "../../resources/userprofile.jpg";
 import { Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+// import { signOut } from "../../modules/auth/authActions";
 
 export default ({ SideMenuPages, isActive }) => {
   const { isSideBarOpen } = useSelector((state) => state.utils);
-  console.log("is sidebar open " + isSideBarOpen);
+
+  const { currentUser } = useSelector((state) => state.auth);
+  // const dispatch = useDispatch();
   return (
     <div
       id="sidebar"
-      className={`vertical-nav bg-white ${isSideBarOpen ? "active" : ""}`}
+      className={`vertical-nav bg-white ${
+        isSideBarOpen && currentUser ? "active" : ""
+      }`}
     >
       <div className="py-4 px-3 mb-4 bg-light">
         <div className="media d-flex align-item-center">
@@ -44,12 +49,15 @@ export default ({ SideMenuPages, isActive }) => {
             Home
           </Nav.Link>
         </Nav.Item>
-        <Nav.Item>
-          <Nav.Link as={NavLink} exact to="/" className="nav-link text-dark">
+        {/* <Nav.Item>
+          <Nav.Link
+            className="nav-link text-dark"
+            onClick={() => dispatch(signOut())}
+          >
             <i className="fa fa-address-card mr-3 text-primary fa-fw"></i>
-            Member
+            Sign Out
           </Nav.Link>
-        </Nav.Item>
+        </Nav.Item> */}
       </Nav>
       {/* <p className="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">
         User Profile
