@@ -14,6 +14,7 @@ export default ({ SideMenuPages, isActive }) => {
   return (
     <div
       id="sidebar"
+      data-testid="component-sidebar"
       className={`vertical-nav bg-white ${
         isSideBarOpen && currentUser ? "active" : ""
       }`}
