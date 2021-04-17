@@ -1,4 +1,10 @@
-import { HomePage, AddTodosPage, SideMenuPages, AuthPage } from "../pages";
+import {
+  HomePage,
+  AddTodosPage,
+  SideMenuPages,
+  AuthPage,
+  DsLinkedListPage
+} from "../pages";
 
 export default [
   {
@@ -47,5 +53,12 @@ export default [
     isExact: false,
     isAuthRequired: false,
     componentName: AuthPage
+  },
+  {
+    path: "/ds",
+    routeId: 6,
+    isExact: false,
+    isAuthRequired: false,
+    componentName: DsLinkedListPage
   }
 ];

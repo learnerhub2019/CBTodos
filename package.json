@@ -1,7 +1,7 @@
 {
-  "name": "the-react-app",
+  "name": "cbtodogithub",
   "version": "1.0.0",
-  "description": "",
+  "description": "Learning reactjs ",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
@@ -23,7 +23,8 @@
     "redux": "4.0.5",
     "redux-logger": "3.0.6",
     "redux-persist": "6.0.0",
-    "redux-saga": "1.1.3"
+    "redux-saga": "1.1.3",
+    "styled-components": "5.2.3"
   },
   "devDependencies": {
     "typescript": "3.8.3"

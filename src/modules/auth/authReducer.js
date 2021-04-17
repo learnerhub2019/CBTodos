@@ -1,7 +1,7 @@
 import { SIGN_IN, SIGN_OUT } from "./authActions";
 
 const initialState = {
-  currentUser: false,
+  currentUser: true,
   token: undefined
 };
 

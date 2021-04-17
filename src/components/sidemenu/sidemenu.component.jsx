@@ -50,6 +50,12 @@ export default ({ SideMenuPages, isActive }) => {
             Home
           </Nav.Link>
         </Nav.Item>
+        <Nav.Item>
+          <Nav.Link as={NavLink} exact to="/ds" className="nav-link text-dark">
+            <i className="fa fa-address-card mr-3 text-primary fa-fw"></i>
+            Datastructure
+          </Nav.Link>
+        </Nav.Item>
         {/* <Nav.Item>
           <Nav.Link
             className="nav-link text-dark"
