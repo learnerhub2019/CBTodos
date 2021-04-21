@@ -1,9 +1,10 @@
 import React from "react";
 import "./sidemenu.css";
-import UserProfile from "../../resources/userprofile.jpg";
+import UserProfile from "../../common/resources/userprofile.jpg";
 import { Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import {} from "./../../constants/router";
 // import { signOut } from "../../modules/auth/authActions";
 
 export default ({ SideMenuPages, isActive }) => {
@@ -51,6 +52,12 @@ export default ({ SideMenuPages, isActive }) => {
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
+          <Nav.Link as={NavLink} exact to="/peoples" className="nav-link text-dark">
+            <i className="fa fa-address-card mr-3 text-primary fa-fw"></i>
+            Peoples
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
           <Nav.Link as={NavLink} exact to="/ds" className="nav-link text-dark">
             <i className="fa fa-address-card mr-3 text-primary fa-fw"></i>
             Datastructure
@@ -66,29 +73,7 @@ export default ({ SideMenuPages, isActive }) => {
           </Nav.Link>
         </Nav.Item> */}
       </Nav>
-      {/* <p className="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">
-        User Profile
-      </p>
-      <Nav defaultActiveKey="/home" className="nav flex-column bg-white mb-0">
-        <Nav.Item>
-          <Nav.Link as={NavLink} href="/home" className="nav-link text-dark">
-            <i className="fa fa-address-card mr-3 text-primary fa-fw"></i>
-            Active
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link as={NavLink} href="/home" className="nav-link text-dark">
-            <i className="fa fa-address-card mr-3 text-primary fa-fw"></i>
-            Home
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link as={NavLink} href="/home" className="nav-link text-dark">
-            <i className="fa fa-address-card mr-3 text-primary fa-fw"></i>
-            Member
-          </Nav.Link>
-        </Nav.Item>
-      </Nav> */}
+
     </div>
   );
 };

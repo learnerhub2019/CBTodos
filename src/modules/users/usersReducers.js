@@ -7,6 +7,8 @@ import {
 } from "./usersActions";
 
 const initialState = {
+  loading: false,
+  error: "",
   users: []
 };
 
@@ -30,7 +32,13 @@ const usersReducer = (state = initialState, { type, payload }) => {
         ...state,
         users: [...payload]
       };
+
     case FETCH_USERS:
+      return {
+        ...state,
+        loading: false,
+        users: [...payload]
+      };
     case GET_USERS:
     default:
       return state;

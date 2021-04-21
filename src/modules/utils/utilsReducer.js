@@ -1,7 +1,16 @@
-import { CLOSE_SIDEBAR, OPEN_SIDEBAR, TOGGLE_SIDEBAR } from "./utilsActions";
+import {
+  CLOSE_SIDEBAR,
+  OPEN_SIDEBAR,
+  TOGGLE_SIDEBAR,
+  UTILS_ACTIONS
+} from "./utilsActions";
 
 const initialState = {
-  isSideBarOpen: false
+  isSideBarOpen: false,
+  isLoading: false,
+  isFetchRequest: false,
+  successMessage: "",
+  errorMessage: ""
 };
 
 const utilsReducer = (state = initialState, { type, payload }) => {
@@ -20,6 +29,34 @@ const utilsReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         isSideBarOpen: payload
+      };
+    case UTILS_ACTIONS.REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+        isFetchRequest: true
+      };
+    case UTILS_ACTIONS.SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        errorMessage: "",
+        successMessage: payload
+      };
+    case UTILS_ACTIONS.FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        successMessage: "",
+        errorMessage: payload
+      };
+    case UTILS_ACTIONS.COMPLETE:
+      return {
+        ...state,
+        isLoading: false,
+        isFetchRequest: false,
+        errorMessage: "",
+        successMessage: ""
       };
     default:
       return state;

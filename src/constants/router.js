@@ -3,8 +3,32 @@ import {
   AddTodosPage,
   SideMenuPages,
   AuthPage,
-  DsLinkedListPage
+  DsLinkedListPage,
+  PeoplesPage
 } from "../pages";
+
+
+
+
+const createRoute = (
+  path,
+  routeId,
+  componentName,
+  displayName,
+  isExact = false,
+  isAuthRequired = true,
+  params = []
+) => {
+  return {
+    path,
+    routeId,
+    isExact,
+    componentName,
+    displayName,
+    isAuthRequired,
+    componentParams: [...params]
+  };
+};
 
 export default [
   {
@@ -56,9 +80,10 @@ export default [
   },
   {
     path: "/ds",
-    routeId: 6,
+    routeId: 7,
     isExact: false,
     isAuthRequired: false,
     componentName: DsLinkedListPage
-  }
+  },
+  new createRoute("/peoples", 8, PeoplesPage, "Peoples")
 ];

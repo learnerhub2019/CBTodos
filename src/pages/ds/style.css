@@ -1,4 +1,33 @@
 .node {
   list-style-type: none;
+  display: flex;
+  border-radius: 10%;
+  margin-left: 10px;
+  width: 100px;
+  height: 50px;
+}
+
+.node__item {
+  padding: 10px;
+}
+
+.node__itemleft {
+  width: 50%;
   border: 2px solid black;
+}
+
+.node__itemright {
+  width: 50%;
+  border: 2px solid black;
+}
+
+.node-connector {
+  width: 50px;
+  height: 5px;
+  border: solid thin red;
+  position: absolute;
+  background-color: red;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }

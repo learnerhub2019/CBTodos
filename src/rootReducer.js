@@ -10,15 +10,14 @@ import usersReducer from "./modules/users/usersReducers";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["utils"]
+  whitelist: ["m"]
 };
 
-console.dir(authReducer);
 const rootReducer = combineReducers({
   utils: utilsReducer,
   todos: todosReducer,
   auth: authReducer,
-  users: usersReducer
+  peoples: usersReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);

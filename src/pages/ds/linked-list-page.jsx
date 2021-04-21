@@ -3,7 +3,6 @@ import { Row } from "react-bootstrap";
 // import { ListGroup } from "react-bootstrap";
 import "./style.css";
 
-
 const DsLinkedListPage = () => {
   return (
     <>
@@ -23,9 +22,15 @@ const DsLinkedListPage = () => {
         <ListGroup.Item>and above!</ListGroup.Item>
       </ListGroup> */}
       <Row className="linked-list justify-content-md-center">
-        <ul className="node">
-          <li> value </li>
-          <li> Next </li>
+        <ul>
+          <div className="node">
+            <li className="node__item node__itemleft"> data </li>
+            <li className="node__item node__itemright"> next </li>
+          </div>
+          {/* <div className="node">
+            <li className="node__item node__itemleft"> data </li>
+            <li className="node__item node__itemright"> next </li>
+          </div> */}
         </ul>
       </Row>
     </>

@@ -6,12 +6,13 @@ import "./styles.css";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodos } from "./modules/todos/todosActions";
+import RequestMessageToast from "./components/common/request-messages/request-message-toast";
 // import { NotFoundPage } from "./pages/utils/not-found.page";
 
 export default function App() {
   // const { todos } = useSelector((state) => state.todos.items);
 
-  const { isSideBarOpen } = useSelector((state) => state.utils);
+  const stateUtils = useSelector((state) => state.utils);
   // const { currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -30,7 +31,9 @@ export default function App() {
           <SideMenu />
           <div
             id="content"
-            className={`page-content ${isSideBarOpen ? "active" : ""}`}
+            className={`page-content ${
+              stateUtils.isSideBarOpen ? "active" : ""
+            }`}
           >
             <HeaderComponent />
             <Container fluid className="page-container">
@@ -40,6 +43,12 @@ export default function App() {
                   <NotFoundPage />
                 </Route> */}
               </Switch>
+              <RequestMessageToast
+                show={true}
+                title="Request Status"
+                subtitle="Request SubTitle"
+                body="include body here"
+              />
             </Container>
           </div>
         </Router>
