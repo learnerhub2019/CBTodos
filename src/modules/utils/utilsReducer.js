@@ -10,7 +10,8 @@ const initialState = {
   isLoading: false,
   isFetchRequest: false,
   successMessage: "",
-  errorMessage: ""
+  errorMessage: "",
+  messageStack : []
 };
 
 const utilsReducer = (state = initialState, { type, payload }) => {
@@ -41,14 +42,14 @@ const utilsReducer = (state = initialState, { type, payload }) => {
         ...state,
         isLoading: false,
         errorMessage: "",
-        successMessage: payload
+        ...payload
       };
     case UTILS_ACTIONS.FAILURE:
       return {
         ...state,
         isLoading: false,
         successMessage: "",
-        errorMessage: payload
+        ...payload
       };
     case UTILS_ACTIONS.COMPLETE:
       return {
