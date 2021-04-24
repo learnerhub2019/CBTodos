@@ -23,7 +23,7 @@ export function getUserList(page = 1, limit = 10) {
     USER_API.getUserList(page, limit)
       .then((users) => {
         dispatch(fetchUsers(users));
-        dispatch(utilsActionSuccess("Users imported successfully !!", true));
+        dispatch(utilsActionSuccess("Users imported successfully !!"));
       })
       .catch((error) => {
         dispatch(utilsActionFailure("Failed to import users !!", true));
@@ -31,10 +31,31 @@ export function getUserList(page = 1, limit = 10) {
   };
 }
 
-export function deleteUser(userId) {
+// export function addUser(user) {
+//   return (dispatch) => {
+//     dispatch(utilsActionRequest());
+//     USER_API.addUser(user)
+//       .then((users) => {
+//         dispatch(fetchUsers(users));
+//         dispatch(utilsActionSuccess("Users imported successfully !!", true));
+//       })
+//       .catch((error) => {
+//         dispatch(utilsActionFailure("Failed to import users !!", true));
+//       });
+//   };
+// }
+
+export function deleteUser(userId, reloadList = false) {
   return (dispatch) => {
-    USER_API.deleteUser(userId).then((res) => {
-      dispatch({ type: DELETE_USER, payload: userId });
-    });
+    dispatch(utilsActionRequest());
+    USER_API.deleteUser(userId)
+      .then((res) => {
+        dispatch({ type: DELETE_USER, payload: userId });
+        if (reloadList) dispatch(getUserList());
+        dispatch(utilsActionSuccess("Users deleted successfully !!"));
+      })
+      .catch((error) => {
+        dispatch(utilsActionFailure("Failed to delete !!"));
+      });
   };
 }

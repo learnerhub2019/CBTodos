@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { HeaderComponent, SideMenu, RoutesComponent } from "./components";
 import "./styles.css";
 // import _ from 'lodash';
 import { Container } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { addTodos } from "./modules/todos/todosActions";
+import { useSelector } from "react-redux";
+// import { addTodos } from "./modules/todos/todosActions";
 import RequestMessageToast from "./components/common/request-messages/request-message-toast";
 // import { NotFoundPage } from "./pages/utils/not-found.page";
 
@@ -14,15 +14,15 @@ export default function App() {
 
   const stateUtils = useSelector((state) => state.utils);
   // const { currentUser } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos")
-      .then((response) => response.json())
-      .then((todos) => {
-        dispatch(addTodos(todos));
-      });
-  });
+  // useEffect(() => {
+  //   fetch("https://jsonplaceholder.typicode.com/todos")
+  //     .then((response) => response.json())
+  //     .then((todos) => {
+  //       dispatch(addTodos(todos));
+  //     });
+  // });
 
   return (
     <>

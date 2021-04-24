@@ -37,8 +37,8 @@ const RequestMessageToast = () => {
         right: 20
       }}
       onClose={() => dispatch(utilsActionComplet())}
-      // delay={3000}
-      // autohide={utilStates.autohide}
+      delay={3000}
+      autohide={utilStates.autohide}
     >
       <Toast.Header className={`bg-${themeColor} ${themeTextColor}`}>
         {utilStates.isLoading && (

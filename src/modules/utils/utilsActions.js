@@ -2,6 +2,16 @@ export const OPEN_SIDEBAR = "OPEN_SIDEBAR";
 export const CLOSE_SIDEBAR = "CLOSE_SIDEBAR";
 export const TOGGLE_SIDEBAR = "TOGGLE_SIDEBAR";
 
+export const MESSAGE_FORMAT = {
+  id: null,
+  isloading: false,
+  isACtive: false,
+  isSuccess: false,
+  message: "",
+  autoHide: false,
+  delay: 3000
+};
+
 export const toggleSidebar = (currentSidebarStatus) => ({
   type: TOGGLE_SIDEBAR,
   payload: !currentSidebarStatus
@@ -17,38 +27,34 @@ export const UTILS_ACTIONS = {
   COMPLETE: "UTILS_ACTIONS_COMPLETE"
 };
 
+export const createMessage = (message, autoHide = false) => {
+  this.message = message;
+};
+
 export const utilsActionComplet = () => {
   return {
     type: UTILS_ACTIONS.COMPLETE
   };
 };
 
-export const utilsActionSuccess = (
-  successMessage,
-  autohide = false,
-  delay = 3000
-) => {
-  return async (dispatch) => {
+export const utilsActionSuccess = (successMessage, autohide = true) => {
+  return (dispatch) => {
     dispatch({
       type: UTILS_ACTIONS.SUCCESS,
-      payload: successMessage
+      payload: { successMessage, autohide }
     });
 
-    if (autohide) await setTimeout(() => dispatch(utilsActionComplet()), delay);
+    // if (autohide) await setTimeout(() => dispatch(utilsActionComplet()), delay);
   };
 };
 
-export const utilsActionFailure = (
-  errorMessage,
-  autohide = false,
-  delay = 3000
-) => {
-  return async (dispatch) => {
+export const utilsActionFailure = (errorMessage, autohide = true) => {
+  return (dispatch) => {
     dispatch({
       type: UTILS_ACTIONS.FAILURE,
-      payload: errorMessage
+      payload: { errorMessage, autohide }
     });
-    if (autohide) await setTimeout(() => dispatch(utilsActionComplet()), delay);
+    // if (autohide) await setTimeout(() => dispatch(utilsActionComplet()), delay);
   };
 };
 

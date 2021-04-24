@@ -2,7 +2,12 @@ import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faChevronLeft,
+  faHome,
+  faSignOutAlt
+} from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar, closeSideBar } from "../../modules/utils/utilsActions";
 import { signOut } from "../../modules/auth/authActions";
@@ -16,40 +21,44 @@ export default () => {
 
   const handleSignOut = () => {
     dispatch(signOut());
-    dispatch( closeSideBar() );
+    dispatch(closeSideBar());
   };
 
   return (
     <>
       {currentUser && (
         <Navbar
-          collapseOnSelect
-          expand="lg"
+          // collapseOnSelect
+          // expand="lg"
           bg="primary"
           variant="dark"
           sticky="top"
+          className="d-flex justify-content-between"
         >
           <Navbar.Brand
             onClick={() => {
               dispatch(toggleSidebar(isSideBarOpen));
             }}
           >
-            {isSideBarOpen ? faChevronLeftIcon : faBarIcon} TodoHandler
+            {isSideBarOpen ? faChevronLeftIcon : faBarIcon}{" "}
+            {process.env.REACT_APP_NAME}
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse
+          {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" /> */}
+          {/* <Navbar.Collapse
             id="responsive-navbar-nav"
             className="justify-content-end"
-          >
-            <Nav>
-              <Nav.Link as={NavLink} exact to="/" activeClassName="active">
-                Home
+          > */}
+          <Nav>
+            <Nav.Link as={NavLink} exact to="/" activeClassName="active">
+              <FontAwesomeIcon icon={faHome} />
+            </Nav.Link>
+            {currentUser && (
+              <Nav.Link onClick={handleSignOut}>
+                <FontAwesomeIcon icon={faSignOutAlt} />
               </Nav.Link>
-              {currentUser && (
-                <Nav.Link onClick={handleSignOut}>Logout</Nav.Link>
-              )}
-            </Nav>
-          </Navbar.Collapse>
+            )}
+          </Nav>
+          {/* </Navbar.Collapse> */}
         </Navbar>
       )}
     </>
